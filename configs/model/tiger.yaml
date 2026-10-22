@@ -1,0 +1,97 @@
+model:
+  name: tiger
+  sid_file: ''
+  history_max_length: 20
+  n_user_tokens: 1
+  user_signature_file: ''
+  user_signature_min_items: 5
+  user_signature_disjoint: false
+  cf_soft_prompt_file: ''
+  cf_soft_prompt_tokens: 1
+  cf_soft_prompt_hidden: 128
+  cf_soft_prompt_min_items: 5
+  cf_soft_prompt_dropout: 0.0
+  cf_align_file: ''
+  cf_align_weight: 0.01
+  cf_align_hidden: 128
+  cf_align_min_items: 5
+  cf_align_temp: 0.1
+  adaptive_depth: false
+  adaptive_tau: 0.0
+  adaptive_min_depth: 1
+  adaptive_stop: oracle
+  adaptive_stable_m: 1
+  adaptive_metric: jaccard
+  adaptive_inloop: false
+  text_embed_file: ''
+  text_embed_mode: false
+  text_embed_depths: all
+  text_anchor_weight: 0.0
+  text_anchor_depth_weights: ''
+  path_ranking_enabled: false
+  path_ranking_weight_mode: learned
+  path_ranking_weight: 0.1
+  path_ranking_negatives: 4
+  path_ranking_temperature: 1.0
+  phrase_loss_enabled: false
+  phrase_loss_weight_mode: learned
+  phrase_loss_weight: 0.1
+  parent_prefix_weight_mode: fixed
+  parent_prefix_loss_weight: 0.0
+  prefix_survival_weight: 0.0
+  prefix_survival_depths: ''
+  prefix_survival_margin: 0.1
+  prefix_survival_num_beams: 40
+  prefix_survival_examples: 16
+  literal_text_file: ''
+  literal_text_model: sentence-transformers/sentence-t5-base
+  literal_text_max_tokens: 512
+  literal_text_finetune: false
+  recode_enabled: false
+  recode_positions: auto
+  recode_signal_file: ''
+  num_beams: 20
+  eval_topk:
+  - 5
+  - 10
+  num_layers: 4
+  num_decoder_layers: 4
+  d_model: 128
+  d_ff: 1024
+  num_heads: 6
+  d_kv: 64
+  dropout_rate: 0.1
+  activation_function: relu
+  feed_forward_proj: relu
+trainer:
+  batch_size: 256
+  eval_batch_size: null
+  shuffle: true
+  mixed_precision: bf16
+  max_epochs: 150
+  eval_steps: 5
+  monitor: ndcg@10
+  early_stopping:
+    enabled: true
+    patience: 6
+    min_delta: 0.0
+  checkpoint:
+    save_best: true
+    save_last: true
+  optimizer:
+    name: AdamW
+    kwargs:
+      lr: 0.003
+      weight_decay: 0.05
+  eval:
+    protocol: full
+    exclude_history: true
+    metrics:
+    - name: recall
+      ks:
+      - 5
+      - 10
+    - name: ndcg
+      ks:
+      - 5
+      - 10

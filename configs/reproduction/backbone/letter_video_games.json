@@ -1,0 +1,123 @@
+{
+  "dataset": {
+    "category": "Video_Games",
+    "download_dir": "data/raw",
+    "download_source": "snap",
+    "metadata_mode": "sentence",
+    "name": "amazon2014_retrieval",
+    "processed_dir": "data/processed",
+    "refresh_cache": false,
+    "split": {
+      "order": "chronological",
+      "per_user": true,
+      "seed": 42,
+      "strategy": "leave_one_out",
+      "test_holdout_num": 1,
+      "test_ratio": 0.1,
+      "train_ratio": 0.8,
+      "valid_holdout_num": 1,
+      "valid_ratio": 0.1
+    }
+  },
+  "model": {
+    "activation_function": "relu",
+    "adaptive_depth": false,
+    "adaptive_inloop": false,
+    "adaptive_metric": "jaccard",
+    "adaptive_min_depth": 1,
+    "adaptive_stable_m": 1,
+    "adaptive_stop": "oracle",
+    "adaptive_tau": 0,
+    "cf_align_file": "",
+    "cf_align_hidden": 128,
+    "cf_align_min_items": 5,
+    "cf_align_temp": 0.1,
+    "cf_align_weight": 0.01,
+    "cf_soft_prompt_dropout": 0,
+    "cf_soft_prompt_file": "",
+    "cf_soft_prompt_hidden": 128,
+    "cf_soft_prompt_min_items": 5,
+    "cf_soft_prompt_tokens": 1,
+    "d_ff": 1024,
+    "d_kv": 64,
+    "d_model": 128,
+    "dropout_rate": 0.1,
+    "eval_topk": [
+      5,
+      10
+    ],
+    "feed_forward_proj": "relu",
+    "history_max_length": 20,
+    "literal_text_file": "",
+    "literal_text_finetune": false,
+    "literal_text_max_tokens": 512,
+    "literal_text_model": "sentence-transformers/sentence-t5-base",
+    "n_user_tokens": 1,
+    "name": "tiger",
+    "num_beams": 20,
+    "num_decoder_layers": 4,
+    "num_heads": 6,
+    "num_layers": 4,
+    "recode_enabled": false,
+    "recode_positions": "auto",
+    "recode_signal_file": "",
+    "sid_file": "artifacts/sids/letter_video_games/item_sids_backbone_suffix.json",
+    "text_embed_file": "",
+    "text_embed_mode": false,
+    "user_signature_disjoint": false,
+    "user_signature_file": "",
+    "user_signature_min_items": 5
+  },
+  "trainer": {
+    "batch_size": 256,
+    "checkpoint": {
+      "save_best": true,
+      "save_last": true
+    },
+    "dataloader_num_workers": 0,
+    "early_stopping": {
+      "enabled": true,
+      "min_delta": 0,
+      "patience": 6
+    },
+    "eval": {
+      "candidate_seed": 42,
+      "exclude_history": true,
+      "metrics": [
+        {
+          "ks": [
+            5,
+            10
+          ],
+          "name": "recall"
+        },
+        {
+          "ks": [
+            5,
+            10
+          ],
+          "name": "ndcg"
+        }
+      ],
+      "neg_sampling_num": 100,
+      "protocol": "full"
+    },
+    "eval_steps": 5,
+    "gradient_accumulation_steps": 1,
+    "inference_topk": null,
+    "max_epochs": 150,
+    "mixed_precision": "no",
+    "monitor": "ndcg@10",
+    "optimizer": {
+      "kwargs": {
+        "lr": 0.003,
+        "weight_decay": 0.05
+      },
+      "name": "AdamW"
+    },
+    "pin_memory": false,
+    "save_inference_results": false,
+    "scheduler": null,
+    "shuffle": true
+  }
+}

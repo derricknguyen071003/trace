@@ -1,0 +1,17 @@
+defaults:
+- optional dataset: null
+- optional model: null
+- _self_
+runtime:
+  seed: 42
+  deterministic: true
+  device: auto
+  output_dir: outputs/${model.name}/${now:%Y-%m-%d_%H-%M-%S}
+  wandb: false
+  wandb_entity: ''
+  wandb_project: TRACE
+  wandb_run_name: null
+  wandb_mode: disabled
+hydra:
+  run:
+    dir: ${runtime.output_dir}

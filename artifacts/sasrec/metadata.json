@@ -1,0 +1,41 @@
+{
+  "grocery": {
+    "seed": 42,
+    "epochs": 12,
+    "dimension": 64,
+    "users": 14681,
+    "items": 8713,
+    "history": "chronological training item interactions only",
+    "arrays": {
+      "users": "remapped integer user IDs",
+      "profiles": "fixed final user states",
+      "items": "item vectors in catalog order"
+    }
+  },
+  "pet_supplies": {
+    "seed": 42,
+    "epochs": 12,
+    "dimension": 64,
+    "users": 19856,
+    "items": 8510,
+    "history": "chronological training item interactions only",
+    "arrays": {
+      "users": "remapped integer user IDs",
+      "profiles": "fixed final user states",
+      "items": "item vectors in catalog order"
+    }
+  },
+  "video_games": {
+    "seed": 42,
+    "epochs": 12,
+    "dimension": 64,
+    "users": 24303,
+    "items": 10672,
+    "history": "chronological training item interactions only",
+    "arrays": {
+      "users": "remapped integer user IDs",
+      "profiles": "fixed final user states",
+      "items": "item vectors in catalog order"
+    }
+  }
+}
